@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevPlatform</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f1f5f9;
+transition:0.3s;
+}
+
+/* LOGIN PAGE */
+.login-page{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("https://images.unsplash.com/photo-1519389950473-47ba0277781c")
+center/cover no-repeat;
+}
+
+.login-box{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+padding:45px;
+border-radius:20px;
+width:350px;
+color:white;
+text-align:center;
+animation:fadeUp 0.7s ease;
+}
+
+.login-box input{
+width:100%;
+padding:12px;
+margin:12px 0;
+border:none;
+border-radius:8px;
+}
+
+.login-box button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#22c55e;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* MAIN APP */
+.app{
+display:none;
+}
+
+.sidebar{
+width:250px;
+height:100vh;
+background:#1e293b;
+color:white;
+position:fixed;
+padding:25px;
+}
+
+.sidebar h2{
+margin-bottom:25px;
+}
+
+.sidebar button{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+background:#334155;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+.sidebar button:hover{
+background:#22c55e;
+color:black;
+transform:translateX(5px);
+}
+
+.main{
+margin-left:270px;
+padding:30px;
+}
+
+.section{
+display:none;
+animation:fade 0.4s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* CARDS */
+.cards{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+flex:1 1 220px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+/* ASSESSMENT */
+.problem-box{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+textarea{
+width:100%;
+height:220px;
+margin-top:15px;
+padding:15px;
+border-radius:10px;
+border:1px solid #cbd5e1;
+font-family:monospace;
+}
+
+select, .run-btn{
+margin-top:10px;
+padding:10px;
+border-radius:8px;
+border:none;
+}
+
+.run-btn{
+background:#2563eb;
+color:white;
+cursor:pointer;
+}
+
+.profile-box{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login-page" id="loginPage">
+<div class="login-box">
+<h2>DevPlatform Login</h2>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+
+<div class="sidebar">
+<h2>DevPlatform</h2>
+<button onclick="showSection('home')">Home</button>
+<button onclick="showSection('dashboard')">Dashboard</button>
+<button onclick="showSection('assessment')">Assessment</button>
+<button onclick="showSection('profile')">Profile</button>
+<button onclick="logout()">Logout</button>
+</div>
+
+<div class="main">
+
+<!-- HOME -->
+<div class="section" id="home">
+<h2>Welcome, <span id="name"></span></h2>
+<p style="margin-top:10px;">Practice coding and improve your skills.</p>
+</div>
+
+<!-- DASHBOARD -->
+<div class="section" id="dashboard">
+<h2>Dashboard</h2>
+<div class="cards">
+<div class="card">
+<h3>Total Problems</h3>
+<p>120</p>
+</div>
+<div class="card">
+<h3>Solved</h3>
+<p>40</p>
+</div>
+<div class="card">
+<h3>Rank</h3>
+<p>856</p>
+</div>
+</div>
+</div>
+
+<!-- ASSESSMENT -->
+<div class="section" id="assessment">
+<h2>Assessment</h2>
+<div class="problem-box">
+<h3>Problem: Reverse a Number</h3>
+<p>Write a program to reverse a given integer.</p>
+
+<select>
+<option>C</option>
+<option>C++</option>
+<option>Java</option>
+<option>Python</option>
+</select>
+
+<textarea>
+// Write your code here
+</textarea>
+
+<br>
+<button class="run-btn">Run Code</button>
+</div>
+</div>
+
+<!-- PROFILE -->
+<div class="section" id="profile">
+<h2>Profile</h2>
+<div class="profile-box">
+<p><strong>Name:</strong> <span id="profileName"></span></p>
+<p><strong>Problems Solved:</strong> 40</p>
+<p><strong>Global Rank:</strong> 856</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<script>
+function login(){
+if(username.value && password.value){
+loginPage.style.display="none";
+app.style.display="block";
+name.innerText=username.value;
+profileName.innerText=username.value;
+showSection("home");
+}
+}
+
+function logout(){
+location.reload();
+}
+
+function showSection(id){
+document.querySelectorAll(".section")
+.forEach(sec=>sec.style.display="none");
+document.getElementById(id).style.display="block";
+}
+</script>
+
+</body>
+</html>
