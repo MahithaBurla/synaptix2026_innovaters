@@ -1,0 +1,101 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  overflow:hidden;
+  background:#f1f5f9;
+}
+
+/* LOGIN */
+.login-page{
+  height:100vh;
+  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+  url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
+  background-size:cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.login-box{
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(10px);
+  padding:40px;
+  border-radius:20px;
+  color:white;
+  width:320px;
+  text-align:center;
+}
+
+input,button{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+}
+
+button{
+  background:#00c6ff;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#0072ff;
+}
+
+/* APP */
+.app{
+  display:none;
+  height:100vh;
+}
+
+.sidebar{
+  width:220px;
+  height:100%;
+  background:#1e293b;
+  position:fixed;
+  color:white;
+  padding-top:20px;
+}
+
+.sidebar h2{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.sidebar ul{
+  list-style:none;
+}
+
+.sidebar ul li{
+  padding:15px 20px;
+  cursor:pointer;
+}
+
+.sidebar ul li:hover{
+  background:#334155;
+}
+
+.content{
+  margin-left:220px;
+  padding:40px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 10px 20px rgba(0,0,0,.1);
+  margin-bottom:20px;
+}
+
+.option-btn{
+  margin-top:10px;
+}
